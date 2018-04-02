@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:oxm="http://www.springframework.org/schema/oxm"
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm.xsd" >
+
+
+	<context:component-scan base-package="ar.com.bsf"/>
+ 	<import resource="daos.xml" /><!-- DB DAOS -->
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	        <value>classpath:sample.properties</value>
+	    </property>
+	    <property name="properties">
+	        <value>goodbye.banner=See you in next course!</value>
+	    </property>
+	</bean>
+	
+    <!-- bean id="generalInfoService" class="ar.com.bsf.courses.spring.services.GeneralInfoService">
+     	<constructor-arg ref="generalInfoDAO"/>
+    </bean-->
+    
+<!--     <bean id="generalInfoService" -->
+<!--     	class="ar.com.bsf.courses.spring.services.GeneralInfoService" -->
+<!--     	autowire="constructor"> -->
+<!--     	<property name="introLegend" value="${general.banner}" /> -->
+<!--     </bean> -->
+    
+<!--     <bean id="localInfoService" class="ar.com.bsf.courses.spring.services.LocalInfoService" -->
+<!--     	autowire="byType" > -->
+<!--    		<constructor-arg ref="weatherDAO"/> -->
+<!--         <constructor-arg ref="currencyDAO"/> -->
+<!--         <property name="introLegend" value="${local.banner}" /> -->
+<!--     </bean> -->
+
+<!--     <bean id="authorService" class="ar.com.bsf.courses.spring.services.AuthorService"	 > -->
+<!--    		<constructor-arg ref="authorDAO"/> -->
+<!--         <constructor-arg ref="bookDAO"/>     -->
+<!--     </bean> -->
+    
+<!-- 	<bean id="badInfoService" class="ar.com.bsf.courses.spring.services.BadInfoService" /> -->
+    
+<!--     <bean id="weatherDAO" class="ar.com.bsf.courses.spring.dao.WeatherInfoDAOImpl"> -->
+<!-- 	</bean> -->
+	
+<!--     <bean id="currencyDAO" class="ar.com.bsf.courses.spring.dao.CurrencyInfoDAOImpl"> -->
+<!--     </bean> -->
+
+	<!-- but goes right if bean name/id matches prop/arg name!! -->
+	
+    
+<!--     <bean id="optionalInfoDAO" class="ar.com.bsf.courses.spring.dao.OptionalInfoDAOImpl">     -->
+<!--     </bean> -->
+    
+<!--     <bean id="optionalInfoDAO2" class="ar.com.bsf.courses.spring.dao.OptionalInfoDAOBuenaOndaImpl">     -->
+<!--     </bean> -->
+    
+    
+    <!-- OXM -->
+    <oxm:jaxb2-marshaller id="jaxbMarshaller">
+    	<oxm:class-to-be-bound name="ar.com.bsf.courses.spring.entities.Author"/>
+    </oxm:jaxb2-marshaller>
+    
+    <bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+    	<property name="supportedClasses" value="ar.com.bsf.courses.spring.entities.Author"/>
+	</bean>
+    
+    <bean id="processor" class="ar.com.bsf.courses.spring.oxm.Processor">
+    	<!--property name="marshaller" ref="xstreamMarshaller" />
+        <property name="unmarshaller" ref="xstreamMarshaller" /-->
+        <property name="marshaller" ref="jaxbMarshaller" />
+        <property name="unmarshaller" ref="jaxbMarshaller" />
+    </bean>
+    
+    
+    <!-- Factory method example -->
+    <bean id="sampleGenSrv" class="ar.com.bsf.courses.spring.App" factory-method="getGeneralInfoService">    
+    </bean>
+    
+    <import resource="aop.xml" /><!--  AOP -->
+    
+    <!-- Profile examples -->    
+<!--     <beans profile="test"> -->
+<!--     	<bean id="generalInfoDAO2" class="ar.com.bsf.courses.spring.dao.GeneralInfoMockDAOImpl"/>     -->
+<!--     </beans> -->
+    
+<!--     <beans profile="prod"> -->
+<!-- 	    <bean id="generalInfoDAO1" class="ar.com.bsf.courses.spring.dao.GeneralInfoDAOImpl" -->
+<!-- 	    	init-method="init" destroy-method="destroy">     -->
+<!-- 	    </bean>     -->
+<!--     </beans> -->
+          
+          
+    
+
+</beans>
