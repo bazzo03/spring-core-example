@@ -7,30 +7,30 @@
     	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
     	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean id="coverageMonitor" class="ar.com.bsf.courses.spring.aop.CoverageMonitor" />
+<!-- 	<bean id="coverageMonitor" class="ar.com.bsf.courses.spring.aop.CoverageMonitor" /> -->
 	
-	<bean id="serviceLogger" class="ar.com.bsf.courses.spring.aop.ServiceLogger" />
+<!-- 	<bean id="serviceLogger" class="ar.com.bsf.courses.spring.aop.ServiceLogger" /> -->
 	
-	<bean id="serviceInfoHider" class="ar.com.bsf.courses.spring.aop.ServiceInfoHider" />
+<!-- 	<bean id="serviceInfoHider" class="ar.com.bsf.courses.spring.aop.ServiceInfoHider" /> -->
 	
-	<aop:config>
+<!-- 	<aop:config> -->
 
-    	<aop:pointcut id="appServices"
-        	expression="execution(public * ar.com.bsf.courses.spring.services..*(..))"/>
+<!--     	<aop:pointcut id="appServices" -->
+<!--         	expression="execution(public * ar.com.bsf.courses.spring.services..*(..))"/> -->
         	
-   	    <aop:aspect id="srvCoverageAspect" ref="coverageMonitor">
-        	<aop:before pointcut-ref="appServices" method="informCoverage" />		
-   		</aop:aspect>
+<!--    	    <aop:aspect id="srvCoverageAspect" ref="coverageMonitor"> -->
+<!--         	<aop:before pointcut-ref="appServices" method="informCoverage" />		 -->
+<!--    		</aop:aspect> -->
    		
-   		<aop:aspect id="srvLoggerAspect" ref="serviceLogger">
-        	<aop:around pointcut-ref="appServices" method="doAuditLog" />				
-  			<aop:after-throwing pointcut-ref="appServices" throwing="ex" method="doErrorLog"/>
-   		</aop:aspect>
+<!--    		<aop:aspect id="srvLoggerAspect" ref="serviceLogger"> -->
+<!--         	<aop:around pointcut-ref="appServices" method="doAuditLog" />				 -->
+<!--   			<aop:after-throwing pointcut-ref="appServices" throwing="ex" method="doErrorLog"/> -->
+<!--    		</aop:aspect> -->
 
-		<aop:aspect id="srvLegalAspect" ref="serviceInfoHider">
-    		<aop:after-returning pointcut-ref="appServices" returning="retVal" method="doSensitiveInfoHiding" />
-   		</aop:aspect>
+<!-- 		<aop:aspect id="srvLegalAspect" ref="serviceInfoHider"> -->
+<!--     		<aop:after-returning pointcut-ref="appServices" returning="retVal" method="doSensitiveInfoHiding" /> -->
+<!--    		</aop:aspect> -->
 
-	</aop:config>
+<!-- 	</aop:config> -->
 
 </beans>

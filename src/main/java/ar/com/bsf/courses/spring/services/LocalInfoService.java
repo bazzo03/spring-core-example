@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.com.bsf.courses.spring.dao.CurrencyInfoDAO;
 import ar.com.bsf.courses.spring.dao.OptionalInfoDAO;
@@ -59,7 +60,7 @@ public class LocalInfoService {
 		this.introLegend = introLegend;
 	}
 
-	
+	@Transactional
 	public List<String> getInfoForLocation() {
 		
 		List<String> locInfo = new ArrayList<>();
@@ -79,6 +80,7 @@ public class LocalInfoService {
 	/**
 	 * @return the optionalInfoDAO
 	 */
+	@Transactional
 	public Map<String,OptionalInfoDAO> getOptionalInfoDAO() {
 		return optionalInfoDAO;
 	}
@@ -86,6 +88,7 @@ public class LocalInfoService {
 	/**
 	 * @param optionalInfoDAO the optionalInfoDAO to set
 	 */
+	@Transactional
 	public void setOptionalInfoDAO(Map<String,OptionalInfoDAO> optionalInfoDAO) {
 		this.optionalInfoDAO = optionalInfoDAO;
 	}

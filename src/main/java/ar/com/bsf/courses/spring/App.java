@@ -3,10 +3,14 @@ package ar.com.bsf.courses.spring;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.env.MutablePropertySources;
+
 import ar.com.bsf.courses.spring.dao.GeneralInfoMockDAOImpl;
 import ar.com.bsf.courses.spring.entities.Author;
 import ar.com.bsf.courses.spring.oxm.Processor;
@@ -20,18 +24,21 @@ import ar.com.bsf.courses.spring.services.LocalInfoService;
  */
 public class App 
 {
+//	@Bean(name="sampleGenSrv")
+//	public GeneralInfoService getGeneralInfoService() {
+//	    //super complex creation of object of GeneralInfoService class
+//		GeneralInfoService obj = new GeneralInfoService(new GeneralInfoMockDAOImpl());
+//		return obj;
+//	}
 	
-	public static GeneralInfoService getGeneralInfoService() {
-	    //super complex creation of object of GeneralInfoService class
-		GeneralInfoService obj = new GeneralInfoService(new GeneralInfoMockDAOImpl());
-		return obj;
-	}
+	// ^ se movió a clase Config
 	
     private static final Logger logger = LogManager.getLogger(App.class);
 
 	public static void main( String[] args )
     {
-    	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+//    	ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
     	MutablePropertySources sources = context.getEnvironment().getPropertySources();
     	System.out.println("### LOOK AT THIS " + sources.get("local.banner"));    	
     

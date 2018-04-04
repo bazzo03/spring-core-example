@@ -1,1 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:Author xmlns:ns2="ar.com.belax"><birthDate>2018-03-22T11:27:46.885-05:00</birthDate><firstName>Ernest</firstName><lastName>Hemingway</lastName></ns2:Author>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Author xmlns:ns2="ar.com.belax">
+    <birthDate>2018-04-04T09:53:25.763-05:00</birthDate>
+    <firstName>Ernest</firstName>
+    <lastName>Hemingway</lastName>
+</ns2:Author>
